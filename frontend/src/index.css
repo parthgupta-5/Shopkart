@@ -1,0 +1,149 @@
+/* ===================================================
+   ShopKart – Global CSS Reset & Design Tokens
+   Dark / High-Contrast System
+   =================================================== */
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* ── Dark surface palette ── */
+  --clr-base-0:    hsl(0, 0%, 0%);        /* pure black */
+  --clr-base-50:   hsl(220, 13%, 5%);     /* near-black */
+  --clr-base-100:  hsl(220, 12%, 9%);     /* darkest surface */
+  --clr-base-150:  hsl(220, 11%, 12%);    /* card bg */
+  --clr-base-200:  hsl(220, 10%, 16%);    /* elevated card */
+  --clr-base-300:  hsl(220,  9%, 22%);    /* borders */
+  --clr-base-400:  hsl(220,  8%, 32%);    /* subtle borders */
+  --clr-base-500:  hsl(220,  6%, 46%);    /* muted text */
+  --clr-base-600:  hsl(220,  5%, 62%);    /* secondary text */
+  --clr-base-700:  hsl(220,  4%, 78%);    /* primary text dim */
+  --clr-base-800:  hsl(220,  3%, 90%);    /* primary text */
+  --clr-base-900:  hsl(0, 0%, 100%);      /* pure white */
+
+  /* ── Accent – vivid emerald ── */
+  --clr-accent-200: hsl(158, 64%, 25%);
+  --clr-accent-300: hsl(158, 66%, 32%);
+  --clr-accent-400: hsl(158, 68%, 42%);
+  --clr-accent-500: hsl(158, 64%, 52%);   /* primary accent */
+  --clr-accent-600: hsl(158, 72%, 62%);
+  --clr-accent-glow: hsla(158, 64%, 52%, 0.25);
+  --clr-accent-glow-lg: hsla(158, 64%, 52%, 0.15);
+
+  /* ── Semantic ── */
+  --clr-success:    hsl(158, 64%, 52%);
+  --clr-success-bg: hsla(158, 64%, 52%, 0.12);
+  --clr-danger:     hsl(350, 70%, 58%);
+  --clr-danger-bg:  hsla(350, 70%, 58%, 0.12);
+  --clr-warning:    hsl(38, 92%, 60%);
+
+  /* ── Backwards-compat aliases (used in existing CSS) ── */
+  --clr-brand-50:   var(--clr-accent-glow-lg);
+  --clr-brand-100:  hsla(158, 64%, 52%, 0.18);
+  --clr-brand-200:  var(--clr-accent-300);
+  --clr-brand-400:  var(--clr-accent-500);
+  --clr-brand-500:  var(--clr-accent-500);
+  --clr-brand-600:  var(--clr-accent-600);
+  --clr-brand-700:  var(--clr-accent-400);
+  --clr-primary-600: var(--clr-accent-500);
+  --clr-neutral-0:   var(--clr-base-900);
+  --clr-neutral-50:  var(--clr-base-150);
+  --clr-neutral-100: var(--clr-base-200);
+  --clr-neutral-200: var(--clr-base-300);
+  --clr-neutral-300: var(--clr-base-400);
+  --clr-neutral-400: var(--clr-base-500);
+  --clr-neutral-500: var(--clr-base-600);
+  --clr-neutral-600: var(--clr-base-700);
+  --clr-neutral-700: var(--clr-base-800);
+  --clr-neutral-800: var(--clr-base-900);
+  --clr-neutral-900: var(--clr-base-900);
+
+  /* ── Surfaces ── */
+  --surface-page:  var(--clr-base-50);
+  --surface-card:  var(--clr-base-150);
+  --surface-inset: var(--clr-base-100);
+
+  /* ── Glass ── */
+  --glass-bg: rgba(12, 14, 20, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur: blur(16px);
+
+  /* ── Typography ── */
+  --font-body:    'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Inter', sans-serif;
+
+  /* ── Spacing scale (8-point) ── */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+
+  /* ── Radii ── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows (dark-mode tuned) ── */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.65);
+
+  /* ── Transitions ── */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-normal: 250ms ease;
+
+  /* ── Navbar height ── */
+  --navbar-h: 64px;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--surface-page);
+  color: var(--clr-base-800);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  min-width: 320px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
