@@ -104,12 +104,15 @@ export async function loginCustomer(req, res) {
 
     const token = generateToken(customer._id);
 
-    // httpOnly prevents JS access; sameSite: 'lax' gives basic CSRF protection;
-    // maxAge keeps the cookie alive for 10 days (same lifetime as the JWT).
-    // Note: secure is intentionally omitted so localhost HTTP still works during development.
+    const isProduction = process.env.NODE_ENV === "production";
+
+    // httpOnly prevents JS access; maxAge keeps the cookie alive for 10 days.
+    // In production, secure: true and sameSite: 'none' are required for cross-origin Netlify <-> Render requests.
+    // In development/localhost, secure: false and sameSite: 'lax' allow HTTP requests to work properly.
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
       maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days in milliseconds
     });
 
@@ -135,8 +138,11 @@ export async function getAuthenticatedCustomer(req, res) {
 }
 
 export async function logoutCustomer(req, res) {
+  const isProduction = process.env.NODE_ENV === "production";
   res.clearCookie("token", {
     httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
   });
 
   return res.status(200).json({

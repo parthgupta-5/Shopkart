@@ -178,6 +178,39 @@ ShopCart/
 
 ---
 
+## 🌐 Production Deployment (Netlify + Render)
+
+### **1. Backend Deployment on Render**
+1. Create a new **Web Service** on [Render](https://render.com/) and connect your repository.
+2. Set the following build and start configurations:
+   - **Root Directory:** `backend`
+   - **Runtime:** `Node`
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start`
+3. Configure the following **Environment Variables** in Render dashboard:
+   - `NODE_ENV` = `production`
+   - `FRONTEND_URL` = `https://<your-app-name>.netlify.app` *(your Netlify frontend domain)*
+   - `MONGODB_URI` = `mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>`
+   - `JWT_SECRET` = `<your-production-jwt-secret>`
+   - `RAZORPAY_KEY_ID` = `<your-razorpay-key-id>`
+   - `RAZORPAY_KEY_SECRET` = `<your-razorpay-key-secret>`
+
+> **Note:** In production (`NODE_ENV=production`), authentication cookies are automatically configured with `secure: true` and `sameSite: 'none'` to enable cross-origin cookie sharing between Netlify and Render.
+
+---
+
+### **2. Frontend Deployment on Netlify**
+1. Create a new site on [Netlify](https://www.netlify.com/) and link your repository.
+2. Set the build settings:
+   - **Base directory:** `frontend`
+   - **Build command:** `npm run build`
+   - **Publish directory:** `dist` (or `frontend/dist`)
+3. Add the **Environment Variable** in Netlify dashboard:
+   - `VITE_API_URL` = `https://<your-backend-service>.onrender.com` *(your deployed Render backend URL)*
+4. Single-Page Application (SPA) routing is handled automatically by [`frontend/public/_redirects`](./frontend/public/_redirects).
+
+---
+
 ## 🧪 Testing with Postman
 
 Postman API collections and environment templates are available in the [`postman/`](./postman/) directory for automated and manual endpoint verification.
@@ -187,3 +220,4 @@ Postman API collections and environment templates are available in the [`postman
 ## 📄 License
 
 This project is created for educational and laboratory learning purposes.
+
